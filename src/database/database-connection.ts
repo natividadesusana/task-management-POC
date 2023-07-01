@@ -5,24 +5,26 @@ dotenv.config();
 
 const { Pool } = pg;
 
-const configDatabase = {
+type DatabaseConfig = {
+  connectionString: string;
+  ssl?: boolean;
+}
+
+const configDatabase: DatabaseConfig = {
   connectionString: process.env.DATABASE_URL,
-  ssl: process.env.MODE === "prod",
 };
 
-const {
-  DB_HOST = "localhost",
-  DB_PORT = "5432",
-  DB_USER = "postgres",
-  DB_PASSWORD = "postgres",
-  DB_NAME = "task-management",
-} = process.env;
+if (process.env.MODE === "prod") {
+  configDatabase.ssl = true;
+}
+
+const { DB_HOST, DB_PORT, DB_USER, DB_PASSWORD, DB_NAME } = process.env;
 
 export const connection = new Pool({
-  host: DB_HOST,
-  port: parseInt(DB_PORT),
-  user: DB_USER,
-  password: DB_PASSWORD,
-  database: DB_NAME,
+  host: DB_HOST || "localhost",
+  port: parseInt(DB_PORT) || 5432,
+  user: DB_USER || "postgres",
+  password: DB_PASSWORD || "postgres",
+  database: DB_NAME || "task-management",
   ...configDatabase,
 });

@@ -1,5 +1,5 @@
 import Joi from "joi";
-import { CreateTask } from "@/protocols/task-protocol";
+import { CreateTask } from "../protocols/task-protocol";
 
 export const taskSchema = Joi.object<CreateTask>({
   title: Joi.string().required(),

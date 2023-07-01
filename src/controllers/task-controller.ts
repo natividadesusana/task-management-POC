@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import httpStatus from "http-status";
-import * as taskService from "@/services/task-service";
-import { CreateTask, EditTasks } from "@/protocols/task-protocol";
+import * as taskService from "../services/task-service";
+import { CreateTask, EditTasks } from "../protocols/task-protocol";
 
 export async function createTask(req: Request, res: Response) {
   const task = req.body as CreateTask;

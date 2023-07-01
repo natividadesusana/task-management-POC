@@ -4,13 +4,14 @@ export type Task = {
   description: string;
   date: string;
   status: boolean;
+  createdAt: string;
 };
 
 export type EditTasks = {
   id?: number,
   title?: string,
-  description?: number,
-  date?: number,
+  description?: string,
+  date?: string;
   status?: boolean
 }
 

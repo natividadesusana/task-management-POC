@@ -1,13 +1,13 @@
 import { Request, Response } from "express";
 import httpStatus from "http-status";
 import * as taskService from "@/services/task-service";
-import { Task, CreateTask, EditTasks } from "@/protocols/task-protocol";
+import { CreateTask, EditTasks } from "@/protocols/task-protocol";
 
 export async function createTask(req: Request, res: Response) {
-  const { title, description, date, status } = req.body as Task;
+  const task = req.body as CreateTask;
 
   try {
-    await taskService.createTask({ title, description, date, status });
+    await taskService.createTask(task);
     res.sendStatus(httpStatus.CREATED);
   } catch (error) {
     console.log(error);
@@ -26,11 +26,11 @@ export async function readTask(req: Request, res: Response) {
 }
 
 export async function updateTask(req: Request, res: Response) {
-  const { id } = req.params;
-  const { title, description, date, status } = req.body as EditTasks;
+  const id: number = parseInt(req.params.id);
+  const editTask = req.body as EditTasks;
 
   try {
-    await taskService.updateTask({ id, title, description, date, status });
+    await taskService.updateTask(id, editTask);
     res.sendStatus(httpStatus.OK);
   } catch (error) {
     console.log(error);
@@ -40,6 +40,7 @@ export async function updateTask(req: Request, res: Response) {
 
 export async function deleteTask(req: Request, res: Response) {
   const id: number = parseInt(req.params.id);
+  
   try {
     const taskExists = await taskService.deleteTask(id);
     if (!taskExists) {

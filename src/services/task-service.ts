@@ -1,5 +1,5 @@
-import * as taskRepository from "../repositories/task-repository";
-import { CreateTask, EditTasks } from "../protocols/task-protocol";
+import * as taskRepository from "@/repositories/task-repository";
+import { CreateTask, EditTasks } from "@/protocols/task-protocol";
 import format from "date-fns/format";
 
 export async function createTask(task: CreateTask) {

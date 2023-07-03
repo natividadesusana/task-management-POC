@@ -1,5 +1,5 @@
-import { CreateTask, EditTasks, Task } from "../protocols/task-protocol";
-import { connection } from "../database/database-connection";
+import { CreateTask, EditTasks, Task } from "@/protocols/task-protocol";
+import { connection } from "@/database/database-connection";
 
 export async function createTask(task: CreateTask) {
   const { title, description, date, status } = task;

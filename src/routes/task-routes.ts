@@ -1,7 +1,7 @@
 import { Router } from "express";
-import * as taskCrontroller from "../controllers/task-controller";
-import validateSchema from "../middlewares/validateSchema-middleware";
-import { taskSchema } from "../schemas/task-schema";
+import * as taskCrontroller from "@/controllers/task-controller";
+import validateSchema from "@/middlewares/validateSchema-middleware";
+import { taskSchema } from "@/schemas/task-schema";
 
 const taskRouter = Router();
 

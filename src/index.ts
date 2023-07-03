@@ -1,7 +1,7 @@
 import express, { Request, Response, json } from "express";
 import httpStatus from "http-status";
 import dotenv from "dotenv";
-import routes from "./routes/index-routes";
+import routes from "@/routes/index-routes";
 
 const app = express();
 
